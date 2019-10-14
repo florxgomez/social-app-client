@@ -13,32 +13,36 @@ import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const styles = {
-  form: {
-    textAlign: "center",
-  },
-  image: {
-    margin: "20px auto 20px auto",
-  },
-  title: {
-    margin: "10px auto 10px auto",
-  },
-  textField: {
-    margin: "10px auto 10px auto",
-  },
-  button: {
-    marginTop: 20,
-    marginBottom: 20,
-    position: 'relative'
-  },
-  customError: {
-    color: "red",
-    fontSize: "0.8rem",
-    marginTop: 10,
-  },
-  progress: {
-      position: 'absolute'
-  },
-};
+    typography: {
+      useNextVariants: true,
+    },
+    form: {
+      textAlign: "center",
+    },
+    image: {
+      margin: "20px auto 20px auto",
+    },
+    title: {
+      margin: "10px auto 10px auto",
+    },
+    textField: {
+      margin: "10px auto 10px auto",
+    },
+    button: {
+      marginTop: 20,
+      marginBottom: 20,
+      position: "relative",
+    },
+    customError: {
+      color: "red",
+      fontSize: "0.8rem",
+      marginTop: 10,
+    },
+    progress: {
+      position: "absolute",
+    },
+  };
+
 
 export class Login extends Component {
   state = {
@@ -61,6 +65,7 @@ export class Login extends Component {
       .post("/login", userData)
       .then(res => {
         console.log(res.data);
+        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
         this.setState({ loading: false });
         this.props.history.push("/"); //redirect to home page
       })
@@ -128,7 +133,9 @@ export class Login extends Component {
               disabled={loading}
             >
               Login
-              {loading && <CircularProgress size={30} className={classes.progress} />}
+              {loading && (
+                <CircularProgress size={30} className={classes.progress} />
+              )}
             </Button>
             <br />
             <small>
