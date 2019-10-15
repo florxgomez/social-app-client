@@ -4,18 +4,19 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import CustomButton from "../util/CustomButton";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
+import LikeButton from "./LikeButton";
 
 //Material UI
 import Grid from "@material-ui/core/Grid";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 //Icons
 import CloseIcon from "@material-ui/icons/Close";
 import UnfoldMore from "@material-ui/icons/UnfoldMore";
+import ChatIcon from "@material-ui/icons/Chat";
 
 //Redux
 import { connect } from "react-redux";
@@ -44,6 +45,11 @@ const styles = theme => ({
   expandButton: {
     position: "absolute",
     left: "90%",
+  },
+  spinnerDiv: {
+    textAlign: "center",
+    marginTop: 50,
+    marginBottom: 50,
   },
 });
 
@@ -77,7 +83,9 @@ class PostDialog extends Component {
     } = this.props;
 
     const dialogMarkup = loading ? (
-      <CircularProgress size={200} />
+      <div className={classes.spinnerDiv}>
+        <CircularProgress size={100} thickness={2} />
+      </div>
     ) : (
       <Grid container spacing={10}>
         <Grid item sm={5}>
@@ -98,6 +106,12 @@ class PostDialog extends Component {
           </Typography>
           <hr className={classes.invisibleSeparator} />
           <Typography variant="body1">{body}</Typography>
+          <LikeButton postId={postId} />
+          <span>{likeCount} likes</span>
+          <CustomButton tip="Comments">
+            <ChatIcon color="primary" />
+          </CustomButton>
+          <span>{commentCount} comments</span>
         </Grid>
       </Grid>
     );
