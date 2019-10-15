@@ -23,14 +23,17 @@ const styles = theme => ({
   ...theme.spread,
   submitButton: {
     position: "relative",
+    float: 'right',
+    marginTop: 10,
+    marginBottom: 10
   },
   progressSpinner: {
     position: "absolute",
   },
   closeButton: {
     position: "absolute",
-    left: "90%",
-    top: "10%",
+    left: "91%",
+    top: "4%",
   },
 });
 
@@ -48,7 +51,7 @@ class MakeAPost extends Component {
       });
     }
     if (!nextProps.UI.errors && !nextProps.UI.loading) {
-      console.log(nextProps.UI.errors, nextProps.UI.loading)
+
       this.setState({ body: '', open: false, errors: {} });
     }
   }
@@ -93,7 +96,7 @@ class MakeAPost extends Component {
           >
             <CloseIcon />
           </CustomButton>
-          <DialogTitle>Post</DialogTitle>
+          <DialogTitle>Sumit a post</DialogTitle>
           <DialogContent>
             <form onSubmit={this.handleSubmit}>
               <TextField
@@ -135,6 +138,7 @@ class MakeAPost extends Component {
 MakeAPost.propTypes = {
   postApost: PropTypes.func.isRequired,
   UI: PropTypes.object.isRequired,
+  clearErrors: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
