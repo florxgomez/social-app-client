@@ -3,15 +3,14 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
-import EditDetails from './EditDetails';
+import EditDetails from "./EditDetails";
+import CustomButton from "../util/CustomButton";
 
 //Material UI
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import MuiLink from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import Tooltip from "@material-ui/core/Tooltip";
 
 //Icons
 import LocationOn from "@material-ui/icons/LocationOn";
@@ -68,11 +67,13 @@ class Profile extends Component {
                 hidden="hidden"
                 onChange={this.handleImageChange}
               />
-              <Tooltip title="Edit profile picture" placement="top">
-                <IconButton onClick={this.handleEditPicture} className="button">
-                  <EditIcon color="primary" />
-                </IconButton>
-              </Tooltip>
+              <CustomButton
+                tip="Edit profile picture"
+                onClick={this.handleEditPicture}
+                btnClassName="button"
+              >
+                <EditIcon color="primary" />
+              </CustomButton>
             </div>
             <hr />
             <div className="profile-details">
@@ -112,11 +113,9 @@ class Profile extends Component {
               <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
               <hr />
             </div>
-            <Tooltip title="Logout" placement="top">
-              <IconButton onClick={this.handleLogout}>
-                <KeyboardReturn color="primary" />
-              </IconButton>
-            </Tooltip>
+            <CustomButton tip="Logout" onClick={this.handleLogout}>
+              <KeyboardReturn color="primary" />
+            </CustomButton>
             <EditDetails />
           </div>
         </Paper>
