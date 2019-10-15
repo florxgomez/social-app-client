@@ -16,7 +16,7 @@ import { connect } from "react-redux";
 import { signupUser } from "../redux/actions/userActions";
 
 const styles = themeFile => ({
-  ...themeFile.spread,
+  ...themeFile.spread
 });
 
 export class SignUp extends Component {
