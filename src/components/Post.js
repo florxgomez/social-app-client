@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
 import CustomButton from "../util/CustomButton";
+import DeletePost from "../components/DeletePost";
 
 //Material UI
 import Card from "@material-ui/core/Card";
@@ -23,6 +24,7 @@ import { likePost, unlikePost } from "../redux/actions/dataActions";
 
 const styles = {
   card: {
+    position: 'relative',
     display: "flex",
     marginBottom: 20,
   },
@@ -67,10 +69,13 @@ class Post extends Component {
         likeCount,
         commentCount,
       },
-      user: { authenticated },
+      user: {
+        authenticated,
+        credentials: { handle },
+      },
     } = this.props;
 
-    console.log(likeCount)
+    console.log(likeCount);
 
     dayjs.extend(relativeTime);
 
@@ -90,6 +95,11 @@ class Post extends Component {
       </CustomButton>
     );
 
+    const deleteButton =
+      authenticated && userHandle === handle ? (
+        <DeletePost postId={postId} />
+      ) : null;
+
     return (
       <Card className={classes.card}>
         <CardMedia
@@ -106,13 +116,14 @@ class Post extends Component {
           >
             {userHandle}
           </Typography>
+          {deleteButton}
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>
           <Typography variant="body1">{body}</Typography>
           {likeButton}
           <span>{likeCount} likes</span>
-          <CustomButton tip="comments">
+          <CustomButton tip="Comments">
             <ChatIcon color="primary" />
           </CustomButton>
           <span>{commentCount} comments</span>
