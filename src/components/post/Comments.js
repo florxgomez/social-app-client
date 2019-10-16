@@ -12,13 +12,16 @@ const styles = theme => ({
   ...theme.spread,
   commentImage: {
     maxWidth: "100%",
-    height: 100,
+    height: 80,
     objectFit: "cover",
     borderRadius: "50%",
     marginLeft: 20,
+    marginRight: 20
   },
   commentData: {
     marginLeft: 20,
+    marginRight: 20,
+    paddingLeft: 20
   },
 });
 

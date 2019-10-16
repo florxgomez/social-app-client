@@ -111,7 +111,7 @@ export const clearErrors = () => dispatch => {
 export const getPost = postId => dispatch => {
   dispatch({ type: LOADING_UI });
   axios
-  .get(`/post/${postId}`)
+    .get(`/post/${postId}`)
     .then(res => {
       dispatch({
         type: SET_POST,
@@ -120,4 +120,19 @@ export const getPost = postId => dispatch => {
       dispatch({ type: STOP_LOADING_UI });
     })
     .catch(err => console.log(err));
+};
+
+export const getUserData = userHandle => dispatch => {
+  dispatch({ type: LOADING_DATA });
+  axios
+    .get(`/user/${userHandle}`)
+    .then(res => {
+      dispatch({
+        type: SET_POSTS,
+        payload: res.data.posts,
+      });
+    })
+    .catch(() => {
+      dispatch({ type: SET_POSTS, payload: null });
+    });
 };

@@ -20,8 +20,9 @@ import AuthRoute from "./util/AuthRoute";
 import home from "./pages/home";
 import login from "./pages/login";
 import signUp from "./pages/signUp";
-import themeFile from "./util/theme";
+import user from "./pages/user";
 
+import themeFile from "./util/theme";
 const theme = createMuiTheme(themeFile);
 
 const token = localStorage.FBIdToken;
@@ -46,16 +47,9 @@ function App() {
           <div className="container">
             <Switch>
               <Route exact path="/" component={home} />
-              <AuthRoute
-                exact
-                path="/login"
-                component={login}
-              />
-              <AuthRoute
-                exact
-                path="/signup"
-                component={signUp}
-              />
+              <AuthRoute exact path="/login" component={login} />
+              <AuthRoute exact path="/signup" component={signUp} />
+              <Route exact path="/users/:handle" component={user} />
             </Switch>
           </div>
         </Router>
