@@ -23,7 +23,7 @@ export default {
     image: {
       margin: "20px auto 20px auto",
     },
-    title: {
+    pageTitle: {
       margin: "10px auto 10px auto",
     },
     textField: {
@@ -31,7 +31,6 @@ export default {
     },
     button: {
       marginTop: 20,
-      marginBottom: 20,
       position: "relative",
     },
     customError: {
@@ -42,8 +41,17 @@ export default {
     progress: {
       position: "absolute",
     },
+    invisibleSeparator: {
+      border: "none",
+      margin: 4,
+    },
+    visibleSeparator: {
+      width: "100%",
+      borderBottom: "1px solid rgba(0,0,0,0.1)",
+      marginBottom: 10 
+    },
     paper: {
-      padding: 20
+      padding: 20,
     },
     profile: {
       "& .image-wrapper": {
@@ -68,7 +76,7 @@ export default {
           verticalAlign: "middle",
         },
         "& a": {
-          color: "#c483de",
+          color: "#00bcd4",
         },
       },
       "& hr": {

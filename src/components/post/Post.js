@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
-import CustomButton from "../util/CustomButton";
-import DeletePost from "../components/DeletePost";
-import PostDialog from "../components/PostDialog";
-import LikeButton from "../components/LikeButton";
+import CustomButton from "../../util/CustomButton";
+import DeletePost from "./DeletePost";
+import PostDialog from "./PostDialog";
+import LikeButton from "./LikeButton";
 
 //Material UI
 import Card from "@material-ui/core/Card";

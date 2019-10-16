@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-import CustomButton from "../util/CustomButton";
+import CustomButton from "../../util/CustomButton";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import LikeButton from "./LikeButton";
+import Comments from "./Comments";
 
 //Material UI
 import Grid from "@material-ui/core/Grid";
@@ -20,14 +21,10 @@ import ChatIcon from "@material-ui/icons/Chat";
 
 //Redux
 import { connect } from "react-redux";
-import { getPost } from "../redux/actions/dataActions";
+import { getPost } from "../../redux/actions/dataActions";
 
 const styles = theme => ({
   ...theme.spread,
-  invisibleSeparator: {
-    border: "none",
-    margin: 4,
-  },
   profileImage: {
     maxWidth: 200,
     height: 200,
@@ -40,7 +37,7 @@ const styles = theme => ({
   closeButton: {
     position: "absolute",
     left: "90%",
-    top: "5%",
+    top: "1.5%",
   },
   expandButton: {
     position: "absolute",
@@ -78,6 +75,7 @@ class PostDialog extends Component {
         commentCount,
         userImage,
         userHandle,
+        comments,
       },
       UI: { loading },
     } = this.props;
@@ -87,7 +85,7 @@ class PostDialog extends Component {
         <CircularProgress size={100} thickness={2} />
       </div>
     ) : (
-      <Grid container spacing={10}>
+      <Grid container spacing={2}>
         <Grid item sm={5}>
           <img src={userImage} alt="Profile" className={classes.profileImage} />
         </Grid>
@@ -113,6 +111,8 @@ class PostDialog extends Component {
           </CustomButton>
           <span>{commentCount} comments</span>
         </Grid>
+        <hr className={classes.visibleSeparator} />
+        <Comments comments={comments} />
       </Grid>
     );
 
