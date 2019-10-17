@@ -12,9 +12,15 @@ import { getUserData } from "../redux/actions/dataActions";
 class user extends Component {
   state = {
     profile: null,
+    postIdParam: null,
   };
+
   componentDidMount() {
     const handle = this.props.match.params.handle;
+    const postId = this.props.match.params.postId;
+
+    if (postId) this.setState({ postIdParam: postId });
+
     this.props.getUserData(handle);
     axios //static profile
       .get(`/user/${handle}`)
@@ -25,13 +31,20 @@ class user extends Component {
   }
   render() {
     const { posts, loading } = this.props.data;
+    const { postIdParam } = this.state;
 
     const postsMarkup = loading ? (
       <p>Loading data...</p>
     ) : posts === null ? (
       <p>No posts from this user</p>
-    ) : (
+    ) : !postIdParam ? (
       posts.map(post => <Post key={post.postId} post={post} />)
+    ) : (
+      posts.map(post => {
+        if (post.postId !== postIdParam)
+          return <Post key={post.postId} post={post} />;
+        else return <Post key={post.postId} post={post} openDialog />;
+      })
     );
 
     return (
@@ -42,9 +55,9 @@ class user extends Component {
         <Grid item sm={4} xs={12}>
           {this.state.profile === null ? (
             <p>Loading profile...</p>
-            ) : (
-              <StaticProfile profile={this.state.profile} />
-            )}
+          ) : (
+            <StaticProfile profile={this.state.profile} />
+          )}
         </Grid>
       </Grid>
     );
