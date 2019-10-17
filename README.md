@@ -1,1 +1,1 @@
-Frontend made with React and Material-UI deployed in Heroku
+Frontend made with React, Redux and Material-UI deployed in Heroku
