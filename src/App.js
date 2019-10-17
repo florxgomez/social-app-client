@@ -25,6 +25,9 @@ import user from "./pages/user";
 import themeFile from "./util/theme";
 const theme = createMuiTheme(themeFile);
 
+axios.defaults.baseURL =
+  "https://us-central1-social-app-c6f0a.cloudfunctions.net/api";
+
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
@@ -50,7 +53,11 @@ function App() {
               <AuthRoute exact path="/login" component={login} />
               <AuthRoute exact path="/signup" component={signUp} />
               <Route exact path="/users/:handle" component={user} />
-              <Route exact path="/users/:handle/post/:postId" component={user} />
+              <Route
+                exact
+                path="/users/:handle/post/:postId"
+                component={user}
+              />
             </Switch>
           </div>
         </Router>
