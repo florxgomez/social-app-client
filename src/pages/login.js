@@ -105,6 +105,7 @@ export class Login extends Component {
               )}
             </Button>
             <br />
+            <br />
             <small>
               Don't have an account? sign up <Link to="signUp">here</Link>
             </small>
